@@ -7,7 +7,7 @@ namespace Penguin.SystemExtensions.Collections
 {
     public class IListCollection<T> : IList<T>, IList
     {
-        protected IList<T> BackingList = new List<T>();
+        protected IList<T> BackingList { get; set; } = new List<T>();
 
         private IListImplementor<T> iListImplementor;
 

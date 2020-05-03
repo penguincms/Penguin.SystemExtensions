@@ -2,23 +2,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Penguin.SystemExtensions.Collections
 {
     public class PropertyDictionary<TKey, TValue, TReturn> : IReadOnlyDictionary<TKey, TReturn>, IPropertyDictionary<TKey, TReturn>
     {
-        IDictionary<TKey, TValue> backingDictionary;
-        Func<TValue, TReturn> PropertyFunc;
-        public PropertyDictionary(IDictionary<TKey, TValue> source, Func<TValue, TReturn> propertyFunc)
-        {
-            backingDictionary = source;
-            PropertyFunc = propertyFunc;
-        }
-
-        public TReturn this[TKey key] { get => PropertyFunc(backingDictionary[key]); }
+        private readonly IDictionary<TKey, TValue> backingDictionary;
+        private readonly Func<TValue, TReturn> PropertyFunc;
+        public int Count => backingDictionary.Count;
 
         public IEnumerable<TKey> Keys => backingDictionary.Keys;
+
         public IEnumerable<TReturn> Values
         {
             get
@@ -29,9 +23,17 @@ namespace Penguin.SystemExtensions.Collections
                 }
             }
         }
-        public int Count => backingDictionary.Count;
+
+        public PropertyDictionary(IDictionary<TKey, TValue> source, Func<TValue, TReturn> propertyFunc)
+        {
+            backingDictionary = source;
+            PropertyFunc = propertyFunc;
+        }
+
+        public TReturn this[TKey key] { get => PropertyFunc(backingDictionary[key]); }
 
         public bool ContainsKey(TKey key) => backingDictionary.ContainsKey(key);
+
         public IEnumerator<KeyValuePair<TKey, TReturn>> GetEnumerator()
         {
             foreach (KeyValuePair<TKey, TValue> kvp in backingDictionary)
@@ -39,6 +41,8 @@ namespace Penguin.SystemExtensions.Collections
                 yield return new KeyValuePair<TKey, TReturn>(kvp.Key, PropertyFunc(kvp.Value));
             }
         }
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
         public bool TryGetValue(TKey key, out TReturn value)
         {
@@ -50,8 +54,5 @@ namespace Penguin.SystemExtensions.Collections
             value = default;
             return false;
         }
-
-        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
-        
     }
 }
