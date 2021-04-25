@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageProjectUrl>https://github.com/penguincms/Penguin.SystemExtensions</PackageProjectUrl>
     <DocumentationFile>Penguin.SystemExtensions.xml</DocumentationFile>
-    <Version>5.0.1</Version>
+    <Version>5.0.5</Version>
     <AssemblyName>Penguin.SystemExtensions</AssemblyName>
     <RootNamespace>Penguin.SystemExtensions</RootNamespace>
     <Description>Not Available</Description>
