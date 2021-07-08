@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageProjectUrl>https://github.com/penguincms/Penguin.SystemExtensions</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/PenguinCMS/Penguin.SystemExtensions</PackageProjectUrl>
     <DocumentationFile>Penguin.SystemExtensions.xml</DocumentationFile>
     <Version>5.0.5</Version>
     <AssemblyName>Penguin.SystemExtensions</AssemblyName>
