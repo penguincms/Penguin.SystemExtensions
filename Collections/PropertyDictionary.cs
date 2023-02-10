@@ -30,9 +30,12 @@ namespace Penguin.SystemExtensions.Collections
             PropertyFunc = propertyFunc;
         }
 
-        public TReturn this[TKey key] { get => PropertyFunc(backingDictionary[key]); }
+        public TReturn this[TKey key] => PropertyFunc(backingDictionary[key]);
 
-        public bool ContainsKey(TKey key) => backingDictionary.ContainsKey(key);
+        public bool ContainsKey(TKey key)
+        {
+            return backingDictionary.ContainsKey(key);
+        }
 
         public IEnumerator<KeyValuePair<TKey, TReturn>> GetEnumerator()
         {
@@ -42,7 +45,10 @@ namespace Penguin.SystemExtensions.Collections
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         public bool TryGetValue(TKey key, out TReturn value)
         {
