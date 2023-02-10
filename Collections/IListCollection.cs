@@ -12,9 +12,13 @@ namespace Penguin.SystemExtensions.Collections
         private IListImplementor<T> iListImplementor;
 
         public virtual int Count => BackingList.Count;
+
         public virtual bool IsFixedSize => IListImplementor.IsFixedSize;
+
         public virtual bool IsReadOnly => BackingList.IsReadOnly;
+
         public virtual bool IsSynchronized => ((IList)IListImplementor).IsSynchronized;
+
         public virtual object SyncRoot => ((IList)IListImplementor).SyncRoot;
 
         protected IListImplementor<T> IListImplementor
@@ -28,6 +32,7 @@ namespace Penguin.SystemExtensions.Collections
         }
 
         public virtual T this[int index] { get => BackingList[index]; set => BackingList[index] = value; }
+
         object IList.this[int index] { get => ((IList)IListImplementor)[index]; set => ((IList)IListImplementor)[index] = value; }
 
         public virtual void Add(T item)

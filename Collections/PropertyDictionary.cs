@@ -9,6 +9,7 @@ namespace Penguin.SystemExtensions.Collections
     {
         private readonly IDictionary<TKey, TValue> backingDictionary;
         private readonly Func<TValue, TReturn> PropertyFunc;
+
         public int Count => backingDictionary.Count;
 
         public IEnumerable<TKey> Keys => backingDictionary.Keys;

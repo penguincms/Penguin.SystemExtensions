@@ -24,6 +24,7 @@ namespace Penguin.SystemExtensions.Implementors
         }
 
         public T this[int index] { get => BackingList[index]; set => BackingList[index] = value; }
+
         object IList.this[int index] { get => this[index]; set => this[index] = (T)value; }
 
         public void Add(T item)
